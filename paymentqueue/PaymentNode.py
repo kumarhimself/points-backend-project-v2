@@ -31,6 +31,3 @@ class PaymentNode:
 
     def add_points(self, points_to_add):
         self.points += points_to_add
-
-    def remove_points(self, points_to_remove):
-        self.points -= points_to_remove
