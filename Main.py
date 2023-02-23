@@ -13,5 +13,8 @@ queue.enqueue(node_two)
 queue.enqueue(node_three)
 queue.enqueue(node_four)
 
-print(queue.peek())
-print(queue)
+print(queue.get_user_balances())
+
+queue.spend_points(50)
+
+print(queue.get_user_balances())

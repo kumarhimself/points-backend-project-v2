@@ -29,5 +29,5 @@ class PaymentNode:
     def set_next_payment(self, new_next_payment=None):
         self.next_payment = new_next_payment
 
-    def add_points(self, points_to_add):
-        self.points += points_to_add
+    def remove_points(self, points_to_remove):
+        self.points -= points_to_remove
