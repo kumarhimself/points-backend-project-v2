@@ -1,8 +1,16 @@
 1. Why did you choose the tools, libraries, and language you used for the coding exercise?
-I chose Python because it was a great language for object oriented programming, and it allowed me to import and process the CSV files quicker.
+I chose Python because it was a great language for object oriented programming, and it allowed me to import and process the CSV files in a 
+quick manner. Specifically the Pandas module allowed me to transform the CSV file into a dataframe and I was able to change the timestamp 
+values to a more readable format easily using the "datetime" library. The sys library was used to read the command line arguments.
 
 2. What are the advantages and disadvantages of your solution?
-The main advantage of my solution is that since I am using a FIFO queue data structure, elements are ordered from oldest payments to newest payments, meaning that enqueue and dequeue operations take constant time. Other advantages include using the Pandas package, which allows the program to quickly import and transform the CSV file without creating too much complexity. The only main disadvantage of this program is that if there are n rows in the CSV file, then the FIFO queue will take up O(n) space. However, this is the tradeoff for having constant time operations which allows the program to execute quickly.
+The main advantage of my solution is that since I am using a FIFO queue data structure, elements are ordered from oldest payments to newest
+payments, meaning that enqueue and dequeue operations take constant time. Other advantages include using the Pandas package, which allows 
+the program to quickly import and transform the CSV file without creating too much complexity. The only main disadvantage of this program 
+is that if there are n rows in the CSV file, then the FIFO queue will take up O(n) space. However, this is the tradeoff for having constant 
+time operations which allows the program to execute quickly.
 
 3. What has been a favorite school/personal project thus far? What about it that challenged you?
-One of my favorite personal projects so far is the Algorithms Visualizer that I am currently working on (called AlgoVis). It is challenging because not only you have to worry about implementing algorithms that work, you also have to visualize them. For example, implementing a sorting algorithm in the application requires me to focus on animating the exchanges and compares. 
+One of my favorite personal projects so far is the Algorithms Visualizer that I am currently working on (called AlgoVis). It is challenging 
+because not only you have to worry about implementing algorithms that work, you also have to visualize them. For example, implementing a 
+sorting algorithm in the application requires me to focus on animating the exchanges and compares. 
