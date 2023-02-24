@@ -1,7 +1,8 @@
 class PaymentQueue:
-    def __init__(self, oldestPayment=None, newestPayment=None, size=0):
-        self.oldestPayment = oldestPayment
-        self.newestPayment = newestPayment
+    def __init__(self, size=0):
+        self.user_balances = {}
+        self.oldestPayment = None
+        self.newestPayment = None
         self.size = size
 
     def __str__(self):
@@ -49,23 +50,26 @@ class PaymentQueue:
 
             if (points_to_spend > currentPayment.get_points()):
                 points_to_spend -= currentPayment.get_points()
+
+                if (currentPayment.get_name() not in self.user_balances.keys()):
+                    self.user_balances[currentPayment.get_name()] = 0
+
                 PaymentQueue.dequeue(self)
             else:
                 currentPayment.remove_points(points_to_spend)
                 break
 
     def get_user_balances(self):
-        user_balances = {}
         currentPayment = self.oldestPayment
 
         for index in range(self.size):
-            if (currentPayment.get_name() not in user_balances):
-                user_balances[currentPayment.get_name(
+            if (currentPayment.get_name() not in self.user_balances.keys()):
+                self.user_balances[currentPayment.get_name(
                 )] = currentPayment.get_points()
             else:
-                user_balances[currentPayment.get_name(
+                self.user_balances[currentPayment.get_name(
                 )] += currentPayment.get_points()
 
             currentPayment = currentPayment.get_next_payment()
 
-        return user_balances
+        return self.user_balances

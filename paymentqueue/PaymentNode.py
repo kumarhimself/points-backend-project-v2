@@ -1,11 +1,8 @@
-from datetime import datetime
-
-
 class PaymentNode:
     def __init__(self, name, points, time_stamp, next_payment=None):
         self.name = name
         self.points = points
-        self.time_stamp = datetime.strptime(time_stamp[:-4], '%Y-%m-%dT%H:%M')
+        self.time_stamp = time_stamp
         self.next_payment = next_payment
 
     def __str__(self):

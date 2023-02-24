@@ -1,20 +1,29 @@
+import sys
+import pandas as pd  # pip install pandas
+from datetime import datetime
+
 from paymentqueue.PaymentNode import PaymentNode
 from paymentqueue.PaymentQueue import PaymentQueue
 
-node_one = PaymentNode("Paul Dasika", 32, "2020-10-31T4:00:00Z")
-node_two = PaymentNode("Paul Dasika", 93, "2020-10-31T11:00:00Z")
-node_three = PaymentNode("Paul Dasika", 28, "2020-10-31T15:00:00Z")
-node_four = PaymentNode("Paul Dasika", 64, "2020-10-31T16:00:00Z")
+points_to_spend = int(sys.argv[1])
+filename = sys.argv[2]
 
-queue = PaymentQueue("Paul Dasika")
+transactions_df = pd.read_csv(filename)
 
-queue.enqueue(node_one)
-queue.enqueue(node_two)
-queue.enqueue(node_three)
-queue.enqueue(node_four)
+for index in range(len(transactions_df)):
+    transactions_df.loc[index, "timestamp"] = datetime.strptime(
+        transactions_df.loc[index, "timestamp"][:-4], '%Y-%m-%dT%H:%M')
 
-print(queue.get_user_balances())
+transactions_df = transactions_df.sort_values(by="timestamp", ascending=True)
 
-queue.spend_points(50)
+payment_queue = PaymentQueue()
 
-print(queue.get_user_balances())
+for index in range(len(transactions_df)):
+    name = transactions_df.iloc[index]["payer"]
+    points = transactions_df.iloc[index]["points"]
+    timestamp = transactions_df.iloc[index]["timestamp"]
+
+    payment_queue.enqueue(PaymentNode(name, points, timestamp))
+
+payment_queue.spend_points(points_to_spend)
+print(payment_queue.get_user_balances())
